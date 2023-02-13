@@ -1,12 +1,25 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </nav>
+    </nav> -->
+    <header-component></header-component>
     <router-view />
+    <!-- <SignUp></SignUp> -->
   </div>
 </template>
+
+<script>
+import HeaderComponent from "./components/HeaderComponent.vue";
+// import SignUp from "./components/SignUp.vue";
+export default {
+  components: { HeaderComponent },
+  data() {
+    return {};
+  },
+};
+</script>
 
 <style>
 #app {
