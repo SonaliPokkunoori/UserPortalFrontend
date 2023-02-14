@@ -100,7 +100,7 @@ export default {
         .then((response) => {
           console.log(response);
           //   localStorage.setItem("userName", response.data.userName);
-          localStorage.setItem("userId", response.data.userId);
+          sessionStorage.setItem("userId", response.data.userId);
           //   console.log(this.userName);
           alert("Data Added!!");
         })

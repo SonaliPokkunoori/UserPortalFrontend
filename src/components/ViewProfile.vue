@@ -35,7 +35,7 @@ export default {
   },
   created() {
     // this.userName = localStorage.getItem("userName");
-    this.userId = localStorage.getItem("userId");
+    this.userId = sessionStorage.getItem("userId");
     console.log(this.userId);
     axios
       .get(`/api/kafkaUser/getUserDetails/${this.userId}`)

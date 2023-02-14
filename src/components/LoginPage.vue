@@ -48,10 +48,15 @@ export default {
         .then((response) => {
           console.log(response);
           if (response.data.isvalid == true) {
-            localStorage.setItem("loginStatus", response.data.isvalid);
-            localStorage.setItem("userId", response.data.userId);
-            alert("Login Success!!");
+            sessionStorage.setItem("loginStatus", response.data.isvalid);
+            sessionStorage.setItem("userId", response.data.userId);
+            // alert("Login Success!!");
+            this.$toasted.show("Login Success!!", {
+              duration: 3000,
+              position: "bottom-center",
+            });
             this.$router.push("/viewProfile");
+            // location.reload();
           } else {
             alert("Incorrect Credentials");
           }

@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand">Welcome</a>
-        <div v-if="loginStatus">
+        <div v-if="loginStatus === 'true'">
           <a class="nav-item nav-link" @click="viewProfile">View Profile</a>
           <a class="nav-item nav-link" @click="logout">Logout</a>
         </div>
@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      loginStatus: localStorage.getItem("loginStatus"),
+      loginStatus: sessionStorage.getItem("loginStatus"),
     };
   },
   methods: {
