@@ -7,26 +7,32 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       userId: sessionStorage.getItem("userId"),
     };
   },
+  computed: {
+    ...mapGetters(["getAuthenticationStatus"]),
+  },
   methods: {
+    ...mapActions(["getLogoutStatusApi"]),
     logout() {
-      axios
-        .post(`/api/kafkaUser/getLogoutStatus/${this.userId}`)
-        .then((response) => {
-          console.log(response);
-          if (response.data == true) {
+      this.$store.dispatch("getLogoutStatusApi", {
+        userId: this.userId,
+        success: (res) => {
+          this.isvalid = res.data.isvalid;
+          if (res.data == true) {
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("loginStatus");
           } else {
             console.log("no logged user");
           }
-        });
+          console.log("logout status", res);
+        },
+      });
 
       //   alert("Logout Success!!");
       this.$toasted.show("Logout Success!!", {

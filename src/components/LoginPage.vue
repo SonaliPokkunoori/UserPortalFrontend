@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="getLoginStatus">
+    <form @submit.prevent="getLoginStatusUser">
       <div class="mb-3">
         <label for="inputUserName" class="form-label">User Name</label>
         <input
@@ -8,16 +8,32 @@
           class="form-control"
           id="inputUserName"
           v-model="userLogin.userName"
+          required
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          v-model="userLogin.password"
-        />
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            id="password"
+            v-model="password"
+            :type="showPassword ? 'text' : 'password'"
+            required
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              @click="showPassword = !showPassword"
+            >
+              <i
+                class="fa"
+                :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+              ></i>
+            </button>
+          </div>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
@@ -25,7 +41,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -34,37 +50,65 @@ export default {
         userName: "",
         password: "",
       },
+      isvalid: false,
+      errorName: false,
+      errorPassword: false,
+      password: "",
+      showPassword: false,
     };
   },
+  computed: {
+    ...mapGetters(["getAuthenticationStatus"]),
+  },
   methods: {
-    getLoginStatus() {
+    ...mapActions(["getLoginStatusApi"]),
+    validateUserName() {
+      if (this.userLogin.userName.length < 6) {
+        this.errorName = true;
+        this.$toasted.show("Username should be more than 6 characters", {
+          duration: 2000,
+          position: "bottom-center",
+        });
+      } else if (!this.userLogin.userName.match("^[a-zA-Z_][a-zA-Z0-9_]*$")) {
+        this.errorName = true;
+        this.$toasted.show("Username should not start with numbers", {
+          duration: 2000,
+          position: "bottom-center",
+        });
+      } else this.errorName = false;
+      return this.errorName;
+    },
+    getLoginStatusUser() {
       const responseBody = {
         userName: this.userLogin.userName,
         password: this.userLogin.password,
       };
+      this.errorName = this.validateUserName(this.userLogin.userName);
       console.log(responseBody);
-      axios
-        .post("/api/kafkaUser/getLoginStatus", responseBody)
-        .then((response) => {
-          console.log(response);
-          if (response.data.isvalid == true) {
-            sessionStorage.setItem("loginStatus", response.data.isvalid);
-            sessionStorage.setItem("userId", response.data.userId);
-            // alert("Login Success!!");
-            this.$toasted.show("Login Success!!", {
-              duration: 3000,
-              position: "bottom-center",
-            });
-            this.$router.push("/viewProfile");
-            // location.reload();
-          } else {
-            alert("Incorrect Credentials");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert(error);
+      if (!this.errorName) {
+        this.$store.dispatch("getLoginStatusApi", {
+          userDetails: responseBody,
+          success: (res) => {
+            this.isvalid = res.data.isvalid;
+            if (this.isvalid === true) {
+              sessionStorage.setItem("loginStatus", res.data.isvalid);
+              sessionStorage.setItem("userId", res.data.userId);
+              this.$router.push("/viewProfile");
+              this.$toasted.show("Login Successful!!", {
+                duration: 2000,
+                position: "bottom-center",
+              });
+            } else {
+              this.$toasted.show("Incorrect Credentials", {
+                duration: 2000,
+                position: "bottom-center",
+              });
+            }
+            console.log("login Status", res);
+          },
+          // isvalid: this.isvalid,
         });
+      }
     },
   },
 };
