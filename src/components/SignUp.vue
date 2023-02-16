@@ -38,7 +38,7 @@
         </div>
       </div>
       <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}" -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="password"
           >Password<span style="color: crimson"> * </span></label
         >
@@ -63,6 +63,18 @@
             </button>
           </div>
         </div>
+      </div> -->
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label"
+          >Password <span style="color: crimson"> * </span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="inputPassword"
+          v-model="user.password"
+          required
+        />
       </div>
       <div class="form-group">
         <label for="inputPhoneNumber" class="form-label"
@@ -266,10 +278,23 @@ export default {
           .post("/api/kafkaUser/addUserDetails", requestBody)
           .then((response) => {
             console.log(response);
-            //   localStorage.setItem("userName", response.data.userName);
-            sessionStorage.setItem("userId", response.data.userId);
-            //   console.log(this.userName);
-            alert("Data Added!!");
+            if (response.data == "") {
+              this.$toasted.show(
+                "Username already exists! Please select a unique username",
+                {
+                  duration: 2000,
+                  position: "bottom-center",
+                }
+              );
+            } else {
+              //   localStorage.setItem("userName", response.data.userName);
+              sessionStorage.setItem("userId", response.data.userId);
+              //   console.log(this.userName);
+              this.$toasted.show("Data added", {
+                duration: 2000,
+                position: "bottom-center",
+              });
+            }
           })
           .catch((error) => {
             console.log(error);
