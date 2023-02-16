@@ -27,8 +27,10 @@ export default {
           if (res.data == true) {
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("loginStatus");
-          } else {
+          } else if (res.data == false) {
             console.log("no logged user");
+          } else if (res.data == "") {
+            console.log("No user");
           }
           console.log("logout status", res);
         },

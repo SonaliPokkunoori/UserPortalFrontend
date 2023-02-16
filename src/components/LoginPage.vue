@@ -98,8 +98,13 @@ export default {
                 duration: 2000,
                 position: "bottom-center",
               });
-            } else {
+            } else if (res.data == false) {
               this.$toasted.show("Incorrect Credentials", {
+                duration: 2000,
+                position: "bottom-center",
+              });
+            } else {
+              this.$toasted.show("No User! Please Sign Up", {
                 duration: 2000,
                 position: "bottom-center",
               });
