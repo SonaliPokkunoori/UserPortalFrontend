@@ -2,7 +2,9 @@
   <div>
     <form @submit.prevent="getLoginStatusUser">
       <div class="mb-3">
-        <label for="inputUserName" class="form-label">User Name</label>
+        <label for="inputUserName" class="form-label"
+          >User Name <span style="color: crimson">*</span></label
+        >
         <input
           type="text"
           class="form-control"
@@ -12,7 +14,9 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password"
+          >Password <span style="color: crimson">*</span></label
+        >
         <div class="input-group">
           <input
             class="form-control"
@@ -35,16 +39,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="mb-3">
-        <label for="inputPassword" class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="inputPassword"
-          v-model="userLogin.password"
-          required
-        />
-      </div> -->
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
   </div>

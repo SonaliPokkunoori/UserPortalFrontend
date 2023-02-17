@@ -278,7 +278,7 @@ export default {
           .post("/api/kafkaUser/addUserDetails", requestBody)
           .then((response) => {
             console.log(response);
-            if (response.data == "") {
+            if (response.data.userId == null) {
               this.$toasted.show(
                 "Username already exists! Please select a unique username",
                 {
