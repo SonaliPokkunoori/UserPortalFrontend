@@ -5,6 +5,7 @@ import SignUp from "@/components/SignUp.vue";
 import ViewProfile from "@/components/ViewProfile.vue";
 import LoginPage from "@/components/LoginPage.vue";
 import LogoutPage from "@/components/LogoutPage.vue";
+import EditProfile from "@/components/EditProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -37,6 +38,11 @@ const routes = [
     path: "/viewProfile",
     name: "viewProfile",
     component: ViewProfile,
+  },
+  {
+    path: "/editProfile",
+    name: "editProfile",
+    component: EditProfile,
   },
   {
     path: "/logout",

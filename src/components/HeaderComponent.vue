@@ -3,11 +3,7 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand">Welcome</a>
-        <div
-          v-if="getAuthenticationStatus"
-          class="collapse navbar-collapse"
-          id="navbarNav"
-        >
+        <div v-if="getAuthenticationStatus" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-item nav-link" @click="viewProfile">View Profile</a>

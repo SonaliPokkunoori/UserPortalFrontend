@@ -38,7 +38,7 @@
         </div>
       </div>
       <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}" -->
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="password"
           >Password<span style="color: crimson"> * </span></label
         >
@@ -46,7 +46,7 @@
           <input
             class="form-control"
             id="password"
-            v-model="password"
+            v-model="user.password"
             :type="showPassword ? 'text' : 'password'"
             required
           />
@@ -63,8 +63,8 @@
             </button>
           </div>
         </div>
-      </div> -->
-      <div class="mb-3">
+      </div>
+      <!-- <div class="mb-3">
         <label for="inputPassword" class="form-label"
           >Password <span style="color: crimson"> * </span></label
         >
@@ -74,8 +74,8 @@
           id="inputPassword"
           v-model="user.password"
           required
-        />
-      </div>
+        /> -->
+      <!-- </div> -->
       <div class="form-group">
         <label for="inputPhoneNumber" class="form-label"
           >Phone Number<span style="color: crimson"> * </span></label
