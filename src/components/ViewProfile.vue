@@ -23,8 +23,13 @@
     <br />
     <label for="dateOfBirth" class="form-label"
       >Date Of Birth: {{ userProfile.dob }}</label
-    ><br />
-    <button class="btn btn-primary" @click="editProfile">Edit Profile</button>
+    ><br /><br />
+    <div class="divButtons">
+      <button class="btn btn-secondary" @click="newPassword">
+        Forgot Password!?
+      </button>
+      <button class="btn btn-primary" @click="editProfile">Edit Profile</button>
+    </div>
   </div>
 </template>
 
@@ -79,6 +84,9 @@ export default {
   methods: {
     editProfile() {
       this.$router.push("/editProfile");
+    },
+    newPassword() {
+      this.$router.push("/forgotPassword");
     },
   },
 };

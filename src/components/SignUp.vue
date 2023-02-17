@@ -12,7 +12,6 @@
           v-model="user.userName"
           required
         />
-        <!-- pattern="[a-zA-Z_][a-zA-Z0-9_].{4,}" -->
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1" class="form-label"
@@ -37,7 +36,6 @@
           </div>
         </div>
       </div>
-      <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}" -->
       <div class="form-group">
         <label for="password"
           >Password<span style="color: crimson"> * </span></label
@@ -64,18 +62,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="mb-3">
-        <label for="inputPassword" class="form-label"
-          >Password <span style="color: crimson"> * </span></label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="inputPassword"
-          v-model="user.password"
-          required
-        /> -->
-      <!-- </div> -->
       <div class="form-group">
         <label for="inputPhoneNumber" class="form-label"
           >Phone Number<span style="color: crimson"> * </span></label
@@ -103,7 +89,6 @@
             </button>
           </div>
         </div>
-        <!-- pattern="[6-9][0-9]{9}" -->
       </div>
       <div class="mb-3">
         <label for="inputMaritalStatus" class="form-label"
