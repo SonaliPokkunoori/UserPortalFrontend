@@ -28,9 +28,7 @@
       <button class="btn btn-secondary" @click="newPassword">
         Forgot Password!?
       </button>
-      <button class="btn btn-primary" @click="editProfile">
-        Edit your Profile
-      </button>
+      <button class="btn btn-primary" @click="editProfile">Edit Profile</button>
     </div>
   </div>
 </template>
