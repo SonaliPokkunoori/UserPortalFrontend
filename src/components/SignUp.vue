@@ -275,7 +275,6 @@ export default {
               //   localStorage.setItem("userName", response.data.userName);
               sessionStorage.setItem("userId", response.data.userId);
               //   console.log(this.userName);
-              alert("Data added");
               this.$toasted.show("Data added", {
                 duration: 2000,
                 position: "bottom-center",
