@@ -128,6 +128,7 @@ export default {
         phno: this.userProfile.phno,
         isvalid: true,
       };
+      console.log("edit profile request body", requestBody);
       axios
         .post("/api/kafkaUser/editProfile", requestBody)
         .then((response) => {
