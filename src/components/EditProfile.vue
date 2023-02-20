@@ -108,7 +108,16 @@ export default {
         console.log("Fetched user details from store", res);
         this.userProfile.userName = res.userName;
         this.userProfile.email = res.email;
-        this.userProfile.dob = res.dob;
+        console.log(typeof res.dob);
+        const date = new Date(res.dob);
+        const dateObject = new Date(
+          Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+        );
+        this.userProfile.dob = dateObject.toISOString().split("T")[0];
+
+        console.log(this.userProfile.dob);
+        console.log(typeof this.userProfile.dob);
+        // this.userProfile.dob = res.dob;
         this.userProfile.phno = res.phno;
         this.userProfile.maritalStatus = res.maritalStatus;
         this.userProfile.password = res.password;
